@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/Fonts/font_heading_1.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/Fonts/font_heading_2.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scripts/GameOver.gd" type="Script" id=3]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.476563, 0.169403, 0.169403, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[node name="Game Over" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+restart_scene = "Level 1"
+menu_scene = "Main Menu"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = SubResource( 2 )
+expand = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_top = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_top = 100.0
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/separation = 30
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 103.0
+custom_fonts/font = ExtResource( 1 )
+text = "Game Over"
+align = 1
+valign = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 133.0
+margin_right = 1024.0
+margin_bottom = 349.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer"]
+margin_left = 249.0
+margin_right = 775.0
+margin_bottom = 216.0
+custom_constants/separation = 30
+
+[node name="Restart" type="LinkButton" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+margin_right = 526.0
+margin_bottom = 52.0
+focus_mode = 2
+custom_fonts/font = ExtResource( 2 )
+text = "Restart"
+underline = 1
+
+[node name="Menu" type="LinkButton" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 82.0
+margin_right = 526.0
+margin_bottom = 134.0
+custom_fonts/font = ExtResource( 2 )
+text = "Return to Menu"
+underline = 1
+
+[node name="Quit" type="LinkButton" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 164.0
+margin_right = 526.0
+margin_bottom = 216.0
+focus_mode = 2
+custom_fonts/font = ExtResource( 2 )
+text = "Quit"
+underline = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/Menu" to="." method="_on_Menu_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
